@@ -52,7 +52,12 @@ public class UserController {
             Object obj = parser.parse(fileReader);
 
             JSONArray users = (JSONArray)obj;
-            users.add(jsonObject);
+            //users.stream().filter(user -> (JSONObject)user.equals(users.) )
+            if(!users.toString().contains("\"email\":\""+userRequest.getEmail()+"\"")){
+                users.add(jsonObject);
+            }
+
+
 
             FileWriter fileWriter = new FileWriter("src/main/resources/userInformation.json");
 
