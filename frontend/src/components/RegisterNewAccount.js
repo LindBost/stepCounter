@@ -11,7 +11,14 @@ const RegisterNewAccount = () => {
 
     const handleRegister = () => {
         console.log("massa skit")
-        createUser(email, firstName, lastName, password, team);
+        const user = {
+            firstname: firstName,
+            lastname: lastName,
+            password: password,
+            email: email,
+            team: team
+        }
+        createUser(user);
     };
 
 

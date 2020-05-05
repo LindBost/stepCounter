@@ -1,8 +1,11 @@
 package com.example.stepupservice.api;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +18,7 @@ import java.io.IOException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+@Slf4j
 public class UserController {
 
     @PostMapping("/login")
@@ -38,18 +42,28 @@ public class UserController {
         jsonObject.put("firstname", userRequest.getFirstname());
         jsonObject.put("lastname", userRequest.getLastname());
         jsonObject.put("team", userRequest.getTeam());
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.add(jsonObject);
-        FileReader fileReader = new FileReader("src/main/resources/userInformation.json");
-        Object obj = fileReader
-        try {
-            FileWriter fileWriter = new FileWriter("src/main/resources/userInformation.json", true);
 
-            fileWriter.write(jsonArray.toJSONString());
-            fileWriter.close();
 
-        } catch (IOException e) {
+
+        JSONParser parser = new JSONParser();
+
+
+        try(FileReader fileReader = new FileReader("src/main/resources/userInformation.json")) {
+            Object obj = parser.parse(fileReader);
+
+            JSONArray users = (JSONArray)obj;
+            users.add(jsonObject);
+
+            FileWriter fileWriter = new FileWriter("src/main/resources/userInformation.json");
+
+            fileWriter.write(users.toJSONString());
+            fileWriter.flush();
+
+        } catch(ParseException ex) {
+            log.info(ex.toString());
         }
+
+
 
         return ResponseEntity.ok(null);
     }
