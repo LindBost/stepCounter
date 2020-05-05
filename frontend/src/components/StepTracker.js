@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import DatePicker from "react-datepicker/es";
+
 
 const StepTracker = (props) => {
 
@@ -7,12 +9,17 @@ const StepTracker = (props) => {
 
     const handleSteps = () => {
 
+        const personalData = {
+            steps: steps,
+            date: date
+        };
+
     };
 
     return (
         <>
             <input placeholder="Steps" type="text" value={steps} onChange={(event) => setSteps(event.target.value)}/>
-            <DatePicker selected={date} onChange={(event) => setDate(event.target.value)} />
+            <DatePicker selected={date} onChange={(date) => setDate(date)} />
             <button onClick={handleSteps}/>
         </>
     )

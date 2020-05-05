@@ -22,16 +22,20 @@ import java.io.IOException;
 public class UserController {
 
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody UserRequest userRequest) throws IOException {
-        try {
-            FileWriter fileWriter = new FileWriter("src/main/resources/userInformation.txt", true);
-            fileWriter.write(userRequest.getEmail() + ":" + userRequest.getPassword() + "\n");
-            fileWriter.close();
+    public ResponseEntity<Boolean> login(@RequestBody UserRequest userRequest) throws IOException, ParseException {
 
-        } catch (IOException e) {
+        JSONParser parser = new JSONParser();
+
+        try(FileReader fileReader = new FileReader("src/main/resources/userInformation.json")) {
+            Object obj = parser.parse(fileReader);
+
+            JSONArray users = (JSONArray) obj;
+            if (users.toString().contains("\"email\":\"" + userRequest.getEmail() + "\"")) {
+                return ResponseEntity.ok(true);
+            }
         }
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(false);
     }
 
     @PostMapping("/createUser")
