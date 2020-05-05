@@ -9,6 +9,6 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<Void> login(@RequestBody UserRequest userRequest) {
-    return ResponseEntity.ok(null);
+        return ResponseEntity.ok(null);
     }
 }
