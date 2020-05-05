@@ -21,9 +21,18 @@ public class UserController {
       }
 
       return ResponseEntity.ok(null);
-
-
     }
 
-  //Write to txt file
+    @PostMapping("/createUser")
+    public ResponseEntity<Void> createUser(@RequestBody CreateUserRequest userRequest) throws IOException {
+        try {
+            FileWriter fileWriter = new FileWriter("src/main/resources/userInformation.txt" , true);
+            fileWriter.write(userRequest.getEmail() + ":" + userRequest.getPassword() + ": "+ userRequest.getFirstname()"\n" );
+            fileWriter.close();
+
+        } catch (IOException e) {
+        }
+
+        return ResponseEntity.ok(null);
+    }
 }
