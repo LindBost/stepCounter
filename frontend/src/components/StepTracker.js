@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import DatePicker from "react-datepicker/es";
 import {login, updateUserSteps} from "../service/UserService";
+import DatePicker from "react-datepicker/es";
 
 
 const StepTracker = ({userInfo, fetchMySteps}) => {
@@ -16,7 +16,7 @@ const StepTracker = ({userInfo, fetchMySteps}) => {
             date: date
         };
 
-        const result = await updateUserSteps(personalData);
+        await updateUserSteps(personalData);
         fetchMySteps();
     };
 
