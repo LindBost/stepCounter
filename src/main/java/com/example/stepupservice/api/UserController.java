@@ -9,16 +9,14 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -41,12 +39,30 @@ public class UserController {
 
         return ResponseEntity.ok(null);
     }
-    @GetMapping("/getSteps")
-    public ResponseEntity<PersonalStepInfo> getSteps(@RequestBody String email) throws IOException{
-        PersonalData
+    @GetMapping("/getSteps/{email}")
+    public ResponseEntity<PersonalStepInfo> getSteps(@PathVariable("email") String email) throws IOException {
+        JSONParser parser = new JSONParser();
+
+        try (FileReader fileReader = new FileReader("src/main/resources/personalData.json")) {
+            Object obj = parser.parse(fileReader);
+
+            JSONArray users = (JSONArray) obj;
+//            List<StepInfo> stepInfo;
+//
+//            users.iterator().forEachRemaining( user -> {
+//                log.info(user.toString());
+//            });
+//            Object collect = users.stream()
+//                    .filter(user -> user.equals(email))
+//                    .collect(Collectors.toList());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.ok(null);
     }
 
-    @PostMapping("/createUser")
+        @PostMapping("/createUser")
     public ResponseEntity<Void> createUser(@RequestBody CreateUserRequest userRequest) throws IOException {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("email", userRequest.getEmail());
@@ -54,8 +70,6 @@ public class UserController {
         jsonObject.put("firstname", userRequest.getFirstname());
         jsonObject.put("lastname", userRequest.getLastname());
         jsonObject.put("team", userRequest.getTeam());
-
-
 
         JSONParser parser = new JSONParser();
 

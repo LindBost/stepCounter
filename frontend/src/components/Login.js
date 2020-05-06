@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {login} from "../service/UserService";
+import {login, personalSteps} from "../service/UserService";
 import { useHistory } from "react-router-dom";
 
 const Login = ({setUserInfo}) => {
@@ -12,7 +12,7 @@ const Login = ({setUserInfo}) => {
     const handleLogin  = async () => {
         const result = await login(email, password);
         setUserInfo({email: result.email, isLoggedIn: true, team: result.team});
-        const personalData = await
+        const personalData = await personalSteps(email);
         console.log('res', result);
         history.push('/dashboard');
 

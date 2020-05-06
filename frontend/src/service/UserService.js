@@ -5,7 +5,7 @@ export const login = async (email, password) =>  {
 };
 
 export const personalSteps = async (email) =>  {
-    const response = await fetch("http://localhost:8080/login", {method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify({email: email, password:password})});
+    const response = await fetch(`http://localhost:8080/getSteps/${email}`, {method:'GET', headers: {'Content-Type': 'application/json'}});
     return await response.json();
 };
 
