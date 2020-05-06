@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -78,6 +79,35 @@ public class UserController {
 
     @PostMapping("/save")
     public ResponseEntity<Void> save(@RequestBody PersonalData personalData) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("email", personalData.getEmail());
+        jsonObject.put("steps", personalData.getSteps());
+        jsonObject.put("date", personalData.getDate());
+
+        JSONParser parser = new JSONParser();
+
+        try(FileReader fileReader = new FileReader("src/main/resources/personalData.json")){
+            //hämta från fil
+            Object obj = parser.parse(fileReader);
+
+            //skapa array
+            JSONArray users = (JSONArray)obj;
+
+            users.add(jsonObject);
+
+            FileWriter fileWriter = new FileWriter("src/main/resources/personalData.json");
+
+            fileWriter.write(users.toJSONString());
+            fileWriter.flush();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         return ResponseEntity.ok(null);
 
     }

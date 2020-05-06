@@ -23,7 +23,7 @@ const StepTracker = ({userInfo}) => {
         <>
             <input placeholder="Steps" type="text" value={steps} onChange={(event) => setSteps(event.target.value)}/>
             <DatePicker selected={date} onChange={(date) => setDate(date)} />
-            <button onClick={handleSteps}> Click here </button>
+            <button onClick={handleSteps}> Update your information </button>
         </>
     )
 };

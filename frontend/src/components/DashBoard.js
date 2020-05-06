@@ -7,9 +7,6 @@ import StepTracker from "./StepTracker";
 const DashBoard = ({userInfo}) => {
 
 
-    const handleUpdate = () => {
-        console.log('blalala', userInfo);
-    }
 
     return (
         <div>
@@ -17,9 +14,6 @@ const DashBoard = ({userInfo}) => {
             {/*<Induvidual/>*/}
             <StepTracker userInfo={userInfo}/>
 
-            <button onClick={handleUpdate}>
-                Uppdate your information
-            </button>
 
 
 
