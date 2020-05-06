@@ -1,6 +1,7 @@
 package com.example.stepupservice.api;
 
 
+import com.example.stepupservice.models.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -22,7 +23,7 @@ import java.io.IOException;
 public class UserController {
 
     @PostMapping("/login")
-    public ResponseEntity<Boolean> login(@RequestBody UserRequest userRequest) throws IOException, ParseException {
+    public ResponseEntity<UserInfo> login(@RequestBody UserRequest userRequest) throws IOException, ParseException {
 
         JSONParser parser = new JSONParser();
 
@@ -31,11 +32,11 @@ public class UserController {
 
             JSONArray users = (JSONArray) obj;
             if (users.toString().contains("\"email\":\"" + userRequest.getEmail() + "\"")) {
-                return ResponseEntity.ok(true);
+                return ResponseEntity.ok(new UserInfo(userRequest.getEmail()));
             }
         }
 
-        return ResponseEntity.ok(false);
+        return ResponseEntity.ok(null);
     }
 
     @PostMapping("/createUser")

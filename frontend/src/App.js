@@ -1,15 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
-import Login from "./components/Login";
-import RegisterNewAccount from "./components/RegisterNewAccount";
-import StepTracker from "./components/StepTracker";
-import AppRouter from "./AppRouter";
+import MainRouter from "./MainRouter";
+import LoginRouter from './LoginRouter';
 
 function App() {
+
+    const [userInfo, setUserInfo] = useState({});
+    console.log('USER', userInfo);
+
+    const handleLoggin = () => {
+        setUserInfo()
+    };
+
   return (
       <div className="App">
         <p>hallå hallå</p>
-          <AppRouter/>
+          {userInfo.isLoggedIn ? <MainRouter userInfo={userInfo}/> : <LoginRouter setUserInfo={setUserInfo}/>}
       </div>
   );
 }
