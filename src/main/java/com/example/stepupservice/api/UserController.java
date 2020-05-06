@@ -1,6 +1,7 @@
 package com.example.stepupservice.api;
 
 
+import com.example.stepupservice.models.PersonalData;
 import com.example.stepupservice.models.UserInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -72,9 +73,12 @@ public class UserController {
         } catch(ParseException ex) {
             log.info(ex.toString());
         }
-
-
-
         return ResponseEntity.ok(null);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Void> save(@RequestBody PersonalData personalData) {
+        return ResponseEntity.ok(null);
+
     }
 }

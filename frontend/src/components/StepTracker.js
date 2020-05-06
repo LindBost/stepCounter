@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import DatePicker from "react-datepicker/es";
+import {login, updateUserSteps} from "../service/UserService";
 
 
 const StepTracker = ({userInfo}) => {
@@ -7,13 +8,15 @@ const StepTracker = ({userInfo}) => {
     const [steps, setSteps] = useState('');
     const [date, setDate] = useState(null);
 
-    const handleSteps = () => {
+    const handleSteps = async () => {
 
         const personalData = {
-            user: userInfo.email,
+            email: userInfo.email,
             steps: steps,
             date: date
         };
+
+        const result = await updateUserSteps(personalData);
     };
 
     return (
