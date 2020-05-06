@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {login} from "../service/UserService";
-
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const history = useHistory();
 
     const handleLogin = () => {
         login(email, password);
@@ -18,6 +20,7 @@ const Login = () => {
             <button onClick={handleLogin}>
                 login
             </button>
+            <button onClick={() => history.push('/register-new-account')}>registrera nytt konto</button>
         </div>
     )
 };
