@@ -15,7 +15,7 @@ function App() {
   return (
       <div className="App">
         <p>hallå hallå</p>
-          {userInfo.isLoggedIn ? <MainRouter userInfo={userInfo}/> : <LoginRouter setUserInfo={setUserInfo}/>}
+          <MainRouter userInfo={userInfo} setUserInfo={setUserInfo} />
       </div>
   );
 }

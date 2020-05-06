@@ -12,12 +12,20 @@ const DashBoard = () => {
 
     return (
         <div>
-            <Teams/>
+            {
+                /*
+
+                 <Teams/>
             <Induvidual/>
-            <p>FAAAAAAAN</p>
-            <button onClick={handleUpdate}>
+
+             <button onClick={handleUpdate}>
                 Uppdate your information
             </button>
+                 */
+            }
+
+            <p>FAAAAAAAN</p>
+
         </div>
 
     )
