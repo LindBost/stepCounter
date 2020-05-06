@@ -8,13 +8,12 @@ import RegisterNewAccount from "./components/RegisterNewAccount";
 
 const MainRouter = ({userInfo, setUserInfo}) => {
 
-
     return (
         <Router history={createBrowserHistory({ basename: '' })}>
             <Switch>
                 {userInfo.isLoggedIn && <Route exact path='/dashboard' component={DashBoard} userInfo={userInfo} /> }
 
-                <Route exact path='/' render={(props) => <Login {...props} setUserInfo={setUserInfo}/>}  />
+                <Route exact path='*' render={(props) => <Login {...props} setUserInfo={setUserInfo}/>}  />
                 <Route exact path='/register-new-account' component={RegisterNewAccount} />
 
             </Switch>
