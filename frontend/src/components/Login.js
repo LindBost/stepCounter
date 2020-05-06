@@ -11,7 +11,7 @@ const Login = ({setUserInfo}) => {
 
     const handleLogin  = async () => {
         const result = await login(email, password);
-        setUserInfo({email: result.email, isLoggedIn: true});
+        setUserInfo({email: result.email, isLoggedIn: true, team: result.team});
         console.log('res', result);
         history.push('/dashboard');
 

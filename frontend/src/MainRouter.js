@@ -13,8 +13,9 @@ const MainRouter = ({userInfo, setUserInfo}) => {
             <Switch>
                 {userInfo.isLoggedIn && <Route exact path='/dashboard' render={() => <DashBoard userInfo={userInfo}/>}/> }
 
+                <Route exact path='/register-new-account' render={(props) => <RegisterNewAccount {...props} />}/>
                 <Route exact path='*' render={(props) => <Login {...props} setUserInfo={setUserInfo}/>}  />
-                <Route exact path='/register-new-account' component={RegisterNewAccount} />
+
 
             </Switch>
         </Router>
