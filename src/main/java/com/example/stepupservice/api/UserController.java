@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +40,10 @@ public class UserController {
         }
 
         return ResponseEntity.ok(null);
+    }
+    @GetMapping("/getSteps")
+    public ResponseEntity<PersonalStepInfo> getSteps(@RequestBody String email) throws IOException{
+        PersonalData
     }
 
     @PostMapping("/createUser")

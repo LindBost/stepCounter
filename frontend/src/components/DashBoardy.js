@@ -2,6 +2,7 @@ import React from 'react';
 import Teams from "./Teams";
 import Induvidual from './Induvidual';
 import StepTracker from "./StepTracker";
+import PersonalData from "./PersonalData";
 
 
 const DashBoard = ({userInfo}) => {
@@ -12,6 +13,7 @@ const DashBoard = ({userInfo}) => {
         <div>
             {/*<Teams/>*/}
             {/*<Induvidual/>*/}
+            <PersonalData/>
             <StepTracker userInfo={userInfo}/>
 
 
