@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,14 +48,18 @@ public class UserController {
             Object obj = parser.parse(fileReader);
 
             JSONArray users = (JSONArray) obj;
-//            List<StepInfo> stepInfo;
-//
-//            users.iterator().forEachRemaining( user -> {
-//                log.info(user.toString());
-//            });
-//            Object collect = users.stream()
-//                    .filter(user -> user.equals(email))
-//                    .collect(Collectors.toList());
+
+
+            List<StepInfo> stepInfo = new ArrayList<>();
+            users.forEach(user -> {
+                JSONObject jsonUser = (JSONObject) user;
+                if(jsonUser.get("email").equals(email)) {
+                    String steps = (String)jsonUser.get("steps");
+                    String date = (String)jsonUser.get("date");
+                    stepInfo.add(new StepInfo(steps, date));
+                }
+            });
+            return ResponseEntity.ok(new PersonalStepInfo(stepInfo));
         } catch (ParseException e) {
             e.printStackTrace();
         }

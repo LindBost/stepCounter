@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker/es";
 import {login, updateUserSteps} from "../service/UserService";
 
 
-const StepTracker = ({userInfo}) => {
+const StepTracker = ({userInfo, fetchMySteps}) => {
 
     const [steps, setSteps] = useState('');
     const [date, setDate] = useState(null);
@@ -17,6 +17,7 @@ const StepTracker = ({userInfo}) => {
         };
 
         const result = await updateUserSteps(personalData);
+        fetchMySteps();
     };
 
     return (
