@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import StepTracker from "./StepTracker";
 import PersonalData from "./PersonalData";
 import {personalSteps} from "../service/UserService";
+import CalcMonthlySteps from "./CalcMonthlySteps"
 
 
 const DashBoard = ({userInfo}) => {
@@ -23,7 +24,8 @@ const DashBoard = ({userInfo}) => {
             {/*<Teams/>*/}
             {/*<Induvidual/>*/}
             <PersonalData mySteps={mySteps}/>
-            <StepTracker fetchMySteps={fetchMySteps} userInfo={userInfo} mySteps={mySteps}/>
+            <CalcMonthlySteps mySteps={mySteps}/>
+            <StepTracker fetchMySteps={fetchMySteps} userInfo={userInfo} mySteps={mySteps} />
 
 
 
