@@ -3,6 +3,7 @@ import StepTracker from "./StepTracker";
 import PersonalData from "./PersonalData";
 import {personalSteps} from "../service/UserService";
 import CalcMonthlySteps from "./CalcMonthlySteps"
+import Teams from "./Teams";
 
 
 const DashBoard = ({userInfo}) => {
@@ -21,7 +22,7 @@ const DashBoard = ({userInfo}) => {
 
     return (
         <div>
-            {/*<Teams/>*/}
+            <Teams team={userInfo.team}/>
             {/*<Induvidual/>*/}
             <PersonalData mySteps={mySteps}/>
             <CalcMonthlySteps mySteps={mySteps}/>

@@ -48,14 +48,15 @@ const CalcMonthlySteps = ({mySteps}) => {
 
     };
 
-
+    let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let monthName = monthNames[month -1];
 
     console.log('date', month);
 
     return(
         <div>
             <button onClick={prevMonth}>prev month</button>
-            <p>{steps}</p>
+            <p>{steps} on {monthName}</p>
             <button onClick={nextMonth}>next month</button>
 
         </div>

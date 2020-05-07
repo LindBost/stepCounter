@@ -29,17 +29,31 @@ public class UserController {
 
         JSONParser parser = new JSONParser();
 
+        UserInfo userInfo = new UserInfo();
         try(FileReader fileReader = new FileReader("src/main/resources/userInformation.json")) {
             Object obj = parser.parse(fileReader);
 
             JSONArray users = (JSONArray) obj;
-            if (users.toString().contains("\"email\":\"" + userRequest.getEmail() + "\"")) {
-                return ResponseEntity.ok(new UserInfo(userRequest.getEmail()));
-            }
+            users.forEach(user -> {
+                JSONObject jsonUser = (JSONObject) user;
+                if(jsonUser.get("email").equals(userRequest.getEmail())) {
+                    String email = (String)jsonUser.get("email");
+                    String team = (String)jsonUser.get("team");
+
+                    userInfo.setEmail(email);
+                    userInfo.setTeam(team);
+
+                }
+
+            });
+          //  if (users.toString().contains("\"email\":\"" + userRequest.getEmail() + "\"")) {
+            //    return ResponseEntity.ok(new UserInfo(userRequest.getEmail()));
+            //}
         }
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(userInfo);
     }
+
     @GetMapping("/getSteps/{email}")
     public ResponseEntity<PersonalStepInfo> getSteps(@PathVariable("email") String email) throws IOException {
         JSONParser parser = new JSONParser();
