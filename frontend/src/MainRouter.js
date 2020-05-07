@@ -1,7 +1,7 @@
 import React, {useState}from 'react'
 import { Switch, Route, Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history';
-import DashBoard from "./components/DashBoard";
+import DashBoard from './components/DashBoardMap/DashBoard'
 import Login from "./components/Login";
 import RegisterNewAccount from "./components/RegisterNewAccount";
 

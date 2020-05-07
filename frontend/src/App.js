@@ -11,7 +11,7 @@ function App() {
 
   return (
       <div className="App">
-        <p>hallå hallå</p>
+
           <MainRouter userInfo={userInfo} setUserInfo={setUserInfo} />
       </div>
   );
