@@ -70,7 +70,7 @@ public class UserController {
                 if(jsonUser.get("email").equals(email)) {
                     String steps = (String)jsonUser.get("steps");
                     String date = (String)jsonUser.get("date");
-                    stepInfo.add(new StepInfo(steps, date));
+                    stepInfo.add(StepInfo.builder().steps(steps).date(date).build());
                 }
             });
             return ResponseEntity.ok(new PersonalStepInfo(stepInfo));

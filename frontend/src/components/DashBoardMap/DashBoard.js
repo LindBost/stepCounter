@@ -9,7 +9,6 @@ import "./Dash.css"
 
 const DashBoard = ({userInfo}) => {
 
-
     const [mySteps, setMySteps] = useState([]);
 
     useEffect(() => {

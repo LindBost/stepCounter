@@ -1,5 +1,7 @@
 package com.example.stepupservice.api;
 
+import com.example.stepupservice.models.UserStepInfo;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,11 +9,11 @@ import java.util.List;
 
 @Getter
 @Setter
+@Builder
 public class TeamInfo {
 
-    private List<StepInfo> info;
+    private String teamName;
 
-    public TeamInfo(List<StepInfo> info) {
-        this.info = info;
-    }
+    private List<UserStepInfo> info;
+
 }

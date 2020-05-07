@@ -1,20 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {teamMembers} from '../service/UserService';
 
-const Teams = ({teamName}) => {
+const Teams = ({team}) => {
 
-    async function fetchTeamMembers() {
+
+    useEffect(() => {
+        fetchTeamMembers(team);
+    }, [team])
+
+    async function fetchTeamMembers(teamName) {
         const team = await teamMembers(teamName);
         console.log(team);
     }
 
-
-    fetchTeamMembers();
-
     return (
         <div>
             <p>TEEEAAMSS</p>
-            <p>{teamName}</p>
+            <p>{team}</p>
         </div>
     )
 };
