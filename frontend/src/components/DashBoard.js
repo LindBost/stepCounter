@@ -23,7 +23,7 @@ const DashBoard = ({userInfo}) => {
             {/*<Teams/>*/}
             {/*<Induvidual/>*/}
             <PersonalData mySteps={mySteps}/>
-            <StepTracker fetchMySteps={fetchMySteps} userInfo={userInfo}/>
+            <StepTracker fetchMySteps={fetchMySteps} userInfo={userInfo} mySteps={mySteps}/>
 
 
 
