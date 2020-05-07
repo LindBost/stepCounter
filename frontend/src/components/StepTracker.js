@@ -22,7 +22,8 @@ const StepTracker = ({userInfo, fetchMySteps, mySteps}) => {
         const personalData = {
             email: userInfo.email,
             steps: steps,
-            date: date
+            date: date,
+            name: userInfo.name
         };
         console.log('PERS', personalData)
         await updateUserSteps(personalData);

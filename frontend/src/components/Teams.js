@@ -1,12 +1,20 @@
 import React from 'react';
+import {teamMembers} from '../service/UserService';
+
+const Teams = ({teamName}) => {
+
+    async function fetchTeamMembers() {
+        const team = await teamMembers(teamName);
+        console.log(team);
+    }
 
 
-const Teams = ({team}) => {
-    console.log('team', team)
-    return(
+    fetchTeamMembers();
+
+    return (
         <div>
             <p>TEEEAAMSS</p>
-<p>{team}</p>
+            <p>{teamName}</p>
         </div>
     )
 };

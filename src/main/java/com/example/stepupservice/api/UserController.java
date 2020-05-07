@@ -54,7 +54,7 @@ public class UserController {
         return ResponseEntity.ok(userInfo);
     }
 
-    @GetMapping("/getSteps/{email}")
+        @GetMapping("/getSteps/{email}")
     public ResponseEntity<PersonalStepInfo> getSteps(@PathVariable("email") String email) throws IOException {
         JSONParser parser = new JSONParser();
 
@@ -121,6 +121,7 @@ public class UserController {
         jsonObject.put("email", personalData.getEmail());
         jsonObject.put("steps", personalData.getSteps());
         jsonObject.put("date", personalData.getDate());
+        jsonObject.put("name", personalData.getName());
 
         JSONParser parser = new JSONParser();
 

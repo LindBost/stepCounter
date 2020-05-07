@@ -9,6 +9,11 @@ export const personalSteps = async (email) =>  {
     return await response.json();
 };
 
+export const teamMembers = async (name) =>  {
+    const response = await fetch(`http://localhost:8080/getTeamMembers/${name}`, {method:'GET', headers: {'Content-Type': 'application/json'}});
+    return await response.json();
+};
+
 export const createUser = async (user) => {
     const response = await fetch("http://localhost:8080/createUser", {method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify(user)})
     console.log(response);

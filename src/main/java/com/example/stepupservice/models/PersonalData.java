@@ -10,10 +10,12 @@ public class PersonalData {
     private String email;
     private String steps;
     private String date;
+    private String name;
 
-    public PersonalData(String email, String steps, String date) {
+    public PersonalData(String email, String steps, String date, String name) {
         this.email = email;
         this.steps = steps;
         this.date = date;
+        this.name = name;
     }
 }
