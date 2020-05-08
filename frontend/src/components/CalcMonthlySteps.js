@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react';
+import "./Component.css";
 
 const CalcMonthlySteps = ({mySteps}) => {
 
@@ -50,7 +51,7 @@ const CalcMonthlySteps = ({mySteps}) => {
     let monthName = monthNames[month -1];
 
     return(
-        <div>
+        <div className="changeMonth">
             <button onClick={prevMonth}>prev month</button>
             <p>{steps} on {monthName}</p>
             <button onClick={nextMonth}>next month</button>

@@ -18,8 +18,8 @@ const Teams = ({team}) => {
 
     return (
         <div>
-            <p>TEEEAAMSS</p>
-            <p>{team}</p>
+
+            <h2>{team}</h2>
             {fetchedTeam.map( teamMember => {
                 return <p>{teamMember.name}</p>
             })}
