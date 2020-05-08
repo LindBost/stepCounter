@@ -19,6 +19,7 @@ const DashBoard = ({userInfo}) => {
         const personalData = await personalSteps(userInfo.email);
         console.log('res', personalData);
         setMySteps(personalData.stepInfoList)
+        console.log('ta bort kommentar')
     }
 
     return (
