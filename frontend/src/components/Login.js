@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {login, personalSteps} from "../service/UserService";
 import { useHistory } from "react-router-dom";
 import { GoogleLogin } from 'react-google-login';
+import axios from 'axios';
 
 const Login = ({setUserInfo}) => {
     const [email, setEmail] = useState('');
@@ -17,10 +18,34 @@ const Login = ({setUserInfo}) => {
 
     };
 
-    const responseGoogle = (response) => {
+    const responseGoogle = async (response) => {
         console.log(response);
         const token = response.accessToken;
         console.log('token', token);
+
+        try {
+            const result = await axios({
+                method: "POST",
+                headers: {
+                    authorization: "Bearer " + token
+                },
+            "Content-type": "application/json",
+                url: `https://wwww.googleapis.com/fitness/v1/users/me/dataset:aggregate`,
+                data: {
+                    aggregateBy: [
+                        {
+                            dataTypeName: "com.google.step_count.delta",
+                            dataSourceId: "defived:com.google.step_count.delta:com.google.android.gms:estimated_steps",
+                        },
+                    ],
+                        bucketByTime: { durationMillis: 86400000 },
+                startTimeMillis: 1585785599000,
+                endTimeMillis: 15859588399000,
+            },
+            });
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     return (
