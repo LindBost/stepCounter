@@ -22,7 +22,7 @@ const Login = ({setUserInfo}) => {
 
     return (
         <div>
-            <p>Logga in</p>
+            <h2>Logga in</h2>
             <input placeholder="Email" className="email" type="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
             <input placeholder="password" className="password" type="password" value={password} onChange={(event) => setPassword(event.target.value)}/>
             <button onClick={ handleLogin }>

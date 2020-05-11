@@ -42,7 +42,7 @@ const DashBoard = ({userInfo}) => {
                     </div>
 
                 </div>
-                <div className="stepCard">
+                <div className="wideCard">
                     <StepTracker fetchMySteps={fetchMySteps} userInfo={userInfo} mySteps={mySteps} />
                 </div>
             </div>
