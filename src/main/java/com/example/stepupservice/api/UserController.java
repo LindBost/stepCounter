@@ -35,13 +35,13 @@ public class UserController {
         return ResponseEntity.ok(userInfo);
     }
 
-        @GetMapping("/getSteps/{email}")
+    @GetMapping("/getSteps/{email}")
     public ResponseEntity<PersonalStepInfo> getSteps(@PathVariable("email") String email) {
         PersonalStepInfo stepsForUser = userRepository.getStepsForUser(email);
         return ResponseEntity.ok(stepsForUser);
     }
 
-        @PostMapping("/createUser")
+    @PostMapping("/createUser")
     public HttpStatus createUser(@RequestBody CreateUserRequest userRequest) {
             boolean createdUserSuccess = userRepository.createUser(userRequest);
             return createdUserSuccess ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
@@ -51,6 +51,5 @@ public class UserController {
     public HttpStatus save(@RequestBody PersonalData personalData) {
         boolean saveStepsSuccess = userRepository.saveStepsForUser(personalData);
         return saveStepsSuccess ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-
     }
 }

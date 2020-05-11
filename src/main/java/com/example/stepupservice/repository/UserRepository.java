@@ -1,6 +1,7 @@
 package com.example.stepupservice.repository;
 
 import com.example.stepupservice.api.CreateUserRequest;
+import com.example.stepupservice.api.DTOs.SaveUserStepInfo;
 import com.example.stepupservice.api.PersonalStepInfo;
 import com.example.stepupservice.api.StepInfo;
 import com.example.stepupservice.api.UserRequest;
@@ -98,4 +99,5 @@ public class UserRepository
         boolean success = fileUtil.writeFile(personalDataUrl, personalUserData);
         return success;
     }
+
 }
