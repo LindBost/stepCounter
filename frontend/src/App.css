@@ -1,38 +1,34 @@
 .App {
   text-align: center;
+  width: 100%;
+  background-color: #206276;
+  font-family:Tele2Sans-Regular;
+}
+body {
+  background-color: #206276;
+  background-position: center;
+  background-size: cover;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Tele2Sans-Light';
+  src: local('Tele2 Sans Light'), local('Tele2Sans-Light');
+  src: url('./fonts/Tele2Sans-Light.ttf') format('truetype'), url('./fonts/Tele2Sans-Light.woff') format('woff');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: 'Tele2Sans-Regular';
+  src: local('Tele2 Sans Regular'), local('Tele2Sans-Regular');
+  src: url('./fonts/Tele2Sans-Regular.ttf') format('truetype'), url('./fonts/Tele2Sans-Regular.woff') format('woff');
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+@font-face {
+  font-family: 'Tele2Sans-Medium';
+  src: local('Tele2 Sans Medium'), local('Tele2Sans-Medium');
+  src: url('./fonts/Tele2Sans-Medium.ttf') format('truetype'), url('./fonts/Tele2Sans-Medium.woff') format('woff');
+}
+h1,h2{
   color: white;
+  justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
