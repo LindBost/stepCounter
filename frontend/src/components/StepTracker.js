@@ -51,8 +51,8 @@ const StepTracker = ({userInfo, fetchMySteps, mySteps}) => {
                         "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
                     }],
                     "bucketByTime": {"durationMillis": 86400000},
-                    "startTimeMillis": 1438705622000,
-                    "endTimeMillis": 1439310422000
+                    "startTimeMillis": new Date(2020, 5, 9).getTime(),
+                    "endTimeMillis": new Date(2020, 5, 11).getTime()
                 },
             });
         } catch (e) {
