@@ -17,9 +17,14 @@ export const teamMembers = async (name) =>  {
 export const createUser = async (user) => {
     const response = await fetch("http://localhost:8080/createUser", {method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify(user)})
     console.log(response);
-}
+};
 
 export const updateUserSteps = async (personalData) => {
     const response = await fetch("http://localhost:8080/save" ,{method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify(personalData)})
     console.log(response);
-}
+};
+
+export const saveUserSteps = async (personalData) => {
+    const response = await fetch("http://localhost:8080/save-user-steps" ,{method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify(personalData)})
+    console.log(response);
+};

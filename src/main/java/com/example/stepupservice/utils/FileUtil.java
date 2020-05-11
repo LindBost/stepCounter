@@ -35,6 +35,17 @@ public class FileUtil {
         }
         return true;
     }
+
+    public boolean writeFile(String url, String jsonString) {
+        try {
+            FileWriter fileWriter = new FileWriter(url);
+            fileWriter.write(jsonString);
+            fileWriter.flush();
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
 /*
     public List<PersonalData> getPersonalData() {
 
