@@ -1,13 +1,20 @@
 .App {
   text-align: center;
   width: 100%;
-  background-color: #206276;
+  height: 100%;
   font-family:Tele2Sans-Regular;
+  margin: 10px;
 }
+
 body {
-  background-color: #206276;
+  background-image: url("./pic/offset_465380.jpg");
+  background-color: black;
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+
 }
 
 @font-face {

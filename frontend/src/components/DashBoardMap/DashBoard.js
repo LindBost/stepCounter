@@ -3,7 +3,7 @@ import StepTracker from "../StepTracker";
 import PersonalData from "../PersonalData";
 import {personalSteps} from "../../service/UserService";
 import CalcMonthlySteps from "../CalcMonthlySteps";
-import Teams from "../Teams";
+import Teams from "./Team/Teams";
 import "./Dash.css";
 
 
@@ -34,7 +34,11 @@ const DashBoard = ({userInfo}) => {
                         </div>
 
                         <div className="card">
-                            <PersonalData mySteps={mySteps}/>
+                        <h2> Your steps:</h2>
+                            <div className="cardContent">
+                                <PersonalData mySteps={mySteps}/>
+                            </div>
+
                             <CalcMonthlySteps mySteps={mySteps}/>
                         </div>
 

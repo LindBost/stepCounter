@@ -7,7 +7,7 @@ const PersonalData = ({mySteps, date, email}) => {
 
     return(
         <>
-            <h2> Your steps:</h2>
+
             {
                 mySteps.map(step => <p> {step.date} : {step.steps} </p>)
             }
