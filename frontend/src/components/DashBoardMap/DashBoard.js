@@ -7,9 +7,17 @@ import Teams from "./Team/Teams";
 import "./Dash.css";
 
 
+const getCurrentDate = () => {
+    const date = new Date();
+    const month = date.getMonth();
+    return month +1;
+};
+
 const DashBoard = ({userInfo}) => {
 
     const [mySteps, setMySteps] = useState([]);
+    const [month, setMonth] = useState(getCurrentDate());
+
 
     useEffect(() => {
         fetchMySteps();
@@ -21,6 +29,7 @@ const DashBoard = ({userInfo}) => {
         setMySteps(personalData.stepInfoList)
         console.log('ta bort kommentar')
     }
+
 
     return (
         <div className="dashPage">
@@ -36,10 +45,10 @@ const DashBoard = ({userInfo}) => {
                         <div className="card">
                         <h2> Your steps:</h2>
                             <div className="cardContent">
-                                <PersonalData mySteps={mySteps}/>
+                                <PersonalData mySteps={mySteps} month={month}/>
                             </div>
 
-                            <CalcMonthlySteps mySteps={mySteps}/>
+                            <CalcMonthlySteps mySteps={mySteps} month={month} setMonth={setMonth}/>
                         </div>
 
 

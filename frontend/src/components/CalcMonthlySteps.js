@@ -1,16 +1,11 @@
 import React,{useEffect, useState} from 'react';
 import "./Component.css";
 
-const CalcMonthlySteps = ({mySteps}) => {
+const CalcMonthlySteps = ({mySteps, month, setMonth}) => {
 
-    const getCurrentDate = () => {
-        const date = new Date();
-        const month = date.getMonth();
-        return month +1;
-    };
+
 
     const [steps,setSteps] = useState();
-    const [month, setMonth] = useState(getCurrentDate());
 
     useEffect(() => {
         calculateMonthlySteps(month);
