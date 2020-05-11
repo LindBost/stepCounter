@@ -1,6 +1,7 @@
 import { GoogleLogin } from 'react-google-login';
 import React from "react";
 import axios from "axios";
+import format from "date-fns/format";
 
 const clientId = "146490553867-4qraof585vmpt92jvhib0rpd88se4cla.apps.googleusercontent.com"
 
@@ -9,7 +10,7 @@ function GoogleAPI({saveSteps}) {
     function saveStepsFromGoogleAPI(steps) {
 
         let userSteps = steps.map(step => {
-            let date = new Date(parseInt(step.startTimeMillis)).toLocaleDateString();
+            let date = new Date(parseInt(step.startTimeMillis));
             let totalSteps = 0;
             step.dataset.map(data => {
                 data.point.map(p => {
@@ -19,13 +20,14 @@ function GoogleAPI({saveSteps}) {
                 })
             })
             return {
-                date: date,
+                date: format(date, "yyyy-MM-dd"),
                 steps: totalSteps
             }
         })
 
         console.log(userSteps)
         saveSteps(userSteps)
+
     }
 
     const responseGoogle = async (response) => {

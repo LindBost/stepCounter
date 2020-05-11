@@ -38,6 +38,7 @@ const StepTracker = ({userInfo, fetchMySteps, mySteps}) => {
 
         console.log(saveUserStepInfo);
         await saveUserSteps(saveUserStepInfo)
+        fetchMySteps();
     };
 
     return (
