@@ -6,8 +6,13 @@ import com.example.stepupservice.api.PersonalStepInfo;
 import com.example.stepupservice.api.StepInfo;
 import com.example.stepupservice.api.UserRequest;
 import com.example.stepupservice.models.PersonalData;
+import com.example.stepupservice.models.PersonalDataDb;
 import com.example.stepupservice.models.UserInfo;
 import com.example.stepupservice.utils.FileUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -87,17 +92,34 @@ public class UserRepository
     }
 
     public boolean saveStepsForUser(PersonalData personalData) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("email", personalData.getEmail());
-        jsonObject.put("steps", personalData.getSteps());
-        jsonObject.put("date", personalData.getDate());
-        jsonObject.put("name", personalData.getName());
+        JSONArray userSteps = fileUtil.readFile(personalDataUrl);
+        String jsonString = userSteps.toJSONString();
+        try {
+            List<PersonalDataDb> list = new ObjectMapper().readValue(jsonString, new TypeReference<>() {});
 
-        JSONArray personalUserData = fileUtil.readFile(personalDataUrl);
-        personalUserData.add(jsonObject);
 
-        boolean success = fileUtil.writeFile(personalDataUrl, personalUserData);
-        return success;
+
+            PersonalDataDb data = list.stream().filter(personalDataDb -> personalDataDb.getDate().equals(personalData.getDate())
+                    && personalDataDb.getEmail().equals(personalData.getEmail())).findFirst().orElse(null);
+
+            if (data != null) {
+                data.setSteps(personalData.getSteps());
+            } else {
+                PersonalDataDb infoToAdd = PersonalDataDb.builder()
+                        .date(personalData.getDate())
+                        .email(personalData.getEmail())
+                        .steps(personalData.getSteps())
+                        .build();
+                list.add(infoToAdd);
+            }
+
+
+            boolean success = fileUtil.writeFile(personalDataUrl, new Gson().toJson(list));
+        } catch (JsonProcessingException e){
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
 }
