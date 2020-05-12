@@ -16,7 +16,7 @@ const StepTracker = ({userInfo, fetchMySteps, fetchTeamMembers}) => {
 
     const test = (date) => {
         setDate(format(date, "yyyy-MM-dd"));
-    }
+    };
 
     const handleSteps = async () => {
         const personalData = {
