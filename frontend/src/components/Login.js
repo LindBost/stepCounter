@@ -1,24 +1,17 @@
 import React, {useState} from 'react';
 import {login, personalSteps} from "../service/UserService";
 import { useHistory } from "react-router-dom";
-import { GoogleLogin } from 'react-google-login';
-import axios from 'axios';
 
 const Login = ({setUserInfo}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-
     const history = useHistory();
 
     const handleLogin  = async () => {
         const result = await login(email, password);
         setUserInfo({email: result.email, isLoggedIn: true, team: result.team});
         history.push('/dashboard');
-
     };
-
-
 
     return (
         <div>
@@ -29,8 +22,6 @@ const Login = ({setUserInfo}) => {
                 login
             </button>
             <button onClick={() => history.push('/register-new-account')}>registrera nytt konto</button>
-
-
         </div>
     )
 };

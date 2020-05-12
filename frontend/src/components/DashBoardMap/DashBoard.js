@@ -5,6 +5,7 @@ import {personalSteps, teamMembers} from "../../service/UserService";
 import CalcMonthlySteps from "../CalcMonthlySteps";
 import Teams from "./Team/Teams";
 import "./Dash.css";
+import { useHistory } from "react-router-dom";
 
 const getCurrentDate = () => {
     const date = new Date();
@@ -17,6 +18,7 @@ const DashBoard = ({userInfo}) => {
     const [mySteps, setMySteps] = useState([]);
     const [month, setMonth] = useState(getCurrentDate());
     const [teamInfo, setTeamInfo] = useState({teamName: '', info: []});
+    const history = useHistory();
 
     useEffect(() => {
         fetchMySteps();
@@ -36,9 +38,12 @@ const DashBoard = ({userInfo}) => {
         setTeamInfo(team);
     }
 
+    const navigateToLeaderBoard = () => history.push('/leaderboard');
+
     return (
         <div className="dashPage">
         <div className="dashContainer">
+                <button type="button" onClick={navigateToLeaderBoard}>Leaderboard</button>
                 <h1>DashBoard</h1>
                 <div className="fetchedInfo">
                     <div className="dashBoard">
