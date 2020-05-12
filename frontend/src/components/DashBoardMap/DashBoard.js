@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import StepTracker from "../StepTracker";
 import PersonalData from "../PersonalData";
-import {personalSteps} from "../../service/UserService";
+import {personalSteps, teamMembers} from "../../service/UserService";
 import CalcMonthlySteps from "../CalcMonthlySteps";
 import Teams from "./Team/Teams";
 import "./Dash.css";
@@ -17,17 +17,27 @@ const DashBoard = ({userInfo}) => {
 
     const [mySteps, setMySteps] = useState([]);
     const [month, setMonth] = useState(getCurrentDate());
+    const [teamInfo, setTeamInfo] = useState({teamName: '', info: []});
 
 
     useEffect(() => {
         fetchMySteps();
     }, [userInfo])
 
+    useEffect(() => {
+        fetchTeamMembers(userInfo.team)
+    }, [userInfo.team])
+
     async function fetchMySteps() {
         const personalData = await personalSteps(userInfo.email);
-        console.log('res', personalData);
         setMySteps(personalData.stepInfoList)
-        console.log('ta bort kommentar')
+    }
+
+
+    async function fetchTeamMembers(teamName) {
+        const team = await teamMembers(teamName);
+        setTeamInfo(team);
+        console.log('team', team)
     }
 
 
@@ -39,7 +49,7 @@ const DashBoard = ({userInfo}) => {
 
                     <div className="dashBoard">
                         <div className="card">
-                            <Teams team={userInfo.team}/>
+                            <Teams teamInfo={teamInfo} month={month}/>
                         </div>
 
                         <div className="card">

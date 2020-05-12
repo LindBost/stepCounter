@@ -2,27 +2,26 @@ import React, {useEffect, useState} from 'react';
 import {teamMembers} from '../../../service/UserService';
 import "./Team.css";
 
-const Teams = ({team}) => {
-
-    const [fetchedTeam, setFetchedTeam] = useState([]);
+const Teams = ({teamInfo, month}) => {
 
 
-    useEffect(() => {
-        fetchTeamMembers(team);
-    }, [team])
-
-    async function fetchTeamMembers(teamName) {
-        const team = await teamMembers(teamName);
-        setFetchedTeam(team.info);
-        console.log(team);
+    const getTeamMemberAndSteps = () => {
+       return teamInfo.info.map(info => {
+            return {
+                name: info.name,
+                steps: info.stepInfos.reduce((total, curr) => new Date(curr.date).getMonth() +1 === month ? total + parseInt(curr.steps) : total + 0, 0)
+            }
+        })
     }
+
+    console.log(getTeamMemberAndSteps())
 
     return (
         <div className="teamContainer">
-            <h2>{team}</h2>
+            <h2>{teamInfo.teamName}</h2>
 
-                {fetchedTeam.map( teamMember => {
-                    return <div className="teamMember">{teamMember.name}</div>
+                {getTeamMemberAndSteps().map( teamMember => {
+                    return <div className="teamMember">{teamMember.name} : {teamMember.steps}</div>
                 })}
 
 
