@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
 import MainRouter from "./MainRouter";
+import NavBar from "./components/NavBar/NavBar";
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
 
   return (
       <div className="App">
+          <NavBar/>
           <MainRouter userInfo={userInfo} setUserInfo={setUserInfo} />
       </div>
   );
