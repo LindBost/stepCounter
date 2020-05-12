@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {teamMembers} from '../../../service/UserService';
 import "./Team.css";
 
 const Teams = ({teamInfo, month}) => {
-
 
     const getTeamMemberAndSteps = () => {
        return teamInfo.info.map(info => {
@@ -12,7 +10,7 @@ const Teams = ({teamInfo, month}) => {
                 steps: info.stepInfos.reduce((total, curr) => new Date(curr.date).getMonth() +1 === month ? total + parseInt(curr.steps) : total + 0, 0)
             }
         })
-    }
+    };
 
     console.log(getTeamMemberAndSteps())
 

@@ -18,14 +18,13 @@ function GoogleAPI({saveSteps}) {
                         totalSteps += v.intVal;
                     })
                 })
-            })
+            });
             return {
                 date: format(date, "yyyy-MM-dd"),
                 steps: totalSteps
             }
-        })
+        });
 
-        console.log(userSteps)
         saveSteps(userSteps)
 
     }
@@ -63,7 +62,7 @@ function GoogleAPI({saveSteps}) {
     return(
         <GoogleLogin
             clientId={clientId}
-            buttonText="Login"
+            buttonText="Hämta steg"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}

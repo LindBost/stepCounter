@@ -37,11 +37,11 @@ public class StepRepository
                 String date = stepInfo.getDate();
                 String steps = stepInfo.getSteps();
 
-                PersonalDataDb data = list.stream().filter(personalDataDb -> personalDataDb.getDate().equals(stepInfo.getDate())
+                PersonalDataDb data = list.stream().filter(personalDataDb -> personalDataDb.getDate().equals(date)
                 && personalDataDb.getEmail().equals(userEmail)).findFirst().orElse(null);
 
                 if (data != null) {
-                    data.setSteps(stepInfo.getSteps());
+                    data.setSteps(steps);
                 } else {
                     PersonalDataDb infoToAdd = PersonalDataDb.builder()
                             .date(date)

@@ -9,7 +9,7 @@ registerLocale("sv", sv);
 
 
 
-const StepTracker = ({userInfo, fetchMySteps, mySteps, fetchTeamMembers}) => {
+const StepTracker = ({userInfo, fetchMySteps, fetchTeamMembers}) => {
 
     const [steps, setSteps] = useState('');
     const [date, setDate] = useState(null);
