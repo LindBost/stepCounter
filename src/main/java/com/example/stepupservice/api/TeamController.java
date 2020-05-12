@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -86,6 +87,74 @@ public class TeamController {
         }
 
         return stepInfos;
+    }
+
+    public List<UserStepInfo> getUserStepInfosInTeam() {
+        List<UserStepInfo> stepInfos = new ArrayList<>();
+
+        JSONParser parser = new JSONParser();
+
+        try (FileReader fileReader = new FileReader("src/main/resources/userInformation.json")) {
+            Object obj = parser.parse(fileReader);
+            JSONArray users = (JSONArray) obj;
+
+            users.forEach(user -> {
+                JSONObject jsonUser = (JSONObject) user;
+                    String email = (String)jsonUser.get("email");
+                    UserStepInfo userStepInfo = UserStepInfo.builder()
+                            .email(email)
+                            .name((String)jsonUser.get("firstname"))
+                            .team((String)jsonUser.get("team"))
+                            .build();
+
+                    stepInfos.add(userStepInfo);
+            });
+        } catch (ParseException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return stepInfos;
+    }
+
+    @GetMapping("/getTeamsInfo")
+    public ResponseEntity<TeamInfo> getTeamsInfo() {
+        JSONParser parser = new JSONParser();
+
+        List<UserStepInfo> emailsAndNamesInTeam = getUserStepInfosInTeam();
+        Map<String, List<StepInfo>> map = new HashMap<>();
+
+        try (FileReader fileReader = new FileReader("src/main/resources/personalData.json")) {
+            Object obj = parser.parse(fileReader);
+            JSONArray users = (JSONArray) obj;
+
+            users.forEach(user -> {
+                JSONObject jsonUser = (JSONObject) user;
+                String email = (String)jsonUser.get("email");
+
+                List<StepInfo> stepInfos = map.computeIfAbsent(email, value -> new ArrayList<>());
+
+                StepInfo info = StepInfo.builder()
+                        .steps((String)jsonUser.get("steps"))
+                        .date((String)jsonUser.get("date"))
+                        .build();
+
+                stepInfos.add(info);
+                map.put(email, stepInfos);
+            });
+
+            List<UserStepInfo> allEmailsAndNames = emailsAndNamesInTeam.stream().map(emailsAndNames -> emailsAndNames.toBuilder()
+                    .stepInfos(map.getOrDefault(emailsAndNames.getEmail(), Collections.emptyList()))
+                    .build()).collect(Collectors.toList());
+
+
+            return ResponseEntity.ok(new TeamInfo("ALL Teams", allEmailsAndNames));
+        } catch (ParseException | FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.ok(null);
     }
 
 
