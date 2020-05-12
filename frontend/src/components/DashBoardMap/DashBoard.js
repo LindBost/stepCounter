@@ -66,7 +66,7 @@ const DashBoard = ({userInfo}) => {
 
                 </div>
                 <div className="wideCard">
-                    <StepTracker fetchMySteps={fetchMySteps} userInfo={userInfo} mySteps={mySteps} />
+                    <StepTracker fetchMySteps={fetchMySteps} userInfo={userInfo} mySteps={mySteps} fetchTeamMembers={fetchTeamMembers}/>
                 </div>
             </div>
         </div>

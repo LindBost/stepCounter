@@ -9,7 +9,7 @@ registerLocale("sv", sv);
 
 
 
-const StepTracker = ({userInfo, fetchMySteps, mySteps}) => {
+const StepTracker = ({userInfo, fetchMySteps, mySteps, fetchTeamMembers}) => {
 
     const [steps, setSteps] = useState('');
     const [date, setDate] = useState(null);
@@ -27,6 +27,7 @@ const StepTracker = ({userInfo, fetchMySteps, mySteps}) => {
         };
         await updateUserSteps(personalData);
         fetchMySteps();
+        fetchTeamMembers();
     };
 
     const saveSteps = async (userSteps) => {
