@@ -6,6 +6,7 @@ import CalcMonthlySteps from "../CalcMonthlySteps";
 import Teams from "./Team/Teams";
 import "./Dash.css";
 import { useHistory } from "react-router-dom";
+import SubNav from "./subNav/SubNav";
 
 const getCurrentDate = () => {
     const date = new Date();
@@ -41,7 +42,9 @@ const DashBoard = ({userInfo}) => {
     const navigateToLeaderBoard = () => history.push('/leaderboard');
 
     return (
+
         <div className="dashPage">
+            <SubNav/>
         <div className="dashContainer">
                 <button type="button" onClick={navigateToLeaderBoard}>Leaderboard</button>
                 <h1>DashBoard</h1>

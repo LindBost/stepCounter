@@ -1,12 +1,12 @@
 .navbar {
     width: 100%;
     min-height: 70px;
-    /*position: fixed;*/
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     border-bottom: 1px solid #ddd;
     background-color: white;
+
 }
 
 .logo{
