@@ -13,8 +13,8 @@ const SubNav = ({setUserInfo}) => {
         <div className="subnav">
 
             <div className="menu">
-                <button type="button" onClick={navigateToLeaderBoard}>Leaderboard</button>
                 <button type="button" onClick={navigateToDashBoard}>DashBoard</button>
+                <button type="button" onClick={navigateToLeaderBoard}>Leaderboard</button>
                 <button type="button" onClick={setUserInfo}>Sign Out</button>
 
                 <ul className='navbar-items'>
