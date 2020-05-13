@@ -5,9 +5,9 @@ import format from "date-fns/format";
 
 const clientId = "146490553867-4qraof585vmpt92jvhib0rpd88se4cla.apps.googleusercontent.com"
 
-function GoogleAPI({saveSteps}) {
+function GoogleAPI({saveSteps, fetchTeamMembers, fetchMySteps}) {
 
-    function saveStepsFromGoogleAPI(steps) {
+    const saveStepsFromGoogleAPI = async(steps) => {
 
         let userSteps = steps.map(step => {
             let date = new Date(parseInt(step.startTimeMillis));
@@ -25,9 +25,11 @@ function GoogleAPI({saveSteps}) {
             }
         });
 
-        saveSteps(userSteps)
+        await saveSteps(userSteps)
+        fetchTeamMembers();
 
     }
+
 
 
     const responseGoogle = async (response) => {

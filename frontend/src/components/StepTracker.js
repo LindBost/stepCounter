@@ -47,7 +47,7 @@ const StepTracker = ({userInfo, fetchMySteps, fetchTeamMembers}) => {
             <input placeholder="Steps" type="text" value={steps} onChange={(event) => setSteps(event.target.value)}/>
             <DatePicker locale={sv} selected={Date.parse(date)} onChange={test} dateFormat="yyyy-MM-dd"/>
             <button onClick={handleSteps}> Update your information</button>
-            <GoogleAPI saveSteps={saveSteps}/>
+            <GoogleAPI saveSteps={saveSteps} fetchTeamMembers={fetchTeamMembers} fetchMySteps={fetchMySteps}/>
         </>
     )
 };
