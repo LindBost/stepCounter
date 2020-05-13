@@ -20,9 +20,8 @@ const RegisterNewAccount = () => {
             password: password,
             email: email,
             team: team
-        }
+        };
         const response = await createUser(user);
-        console.log('res',response)
 
         if(response === 'OK'){
             NotificationManager.success('woho', 'användare skapad');

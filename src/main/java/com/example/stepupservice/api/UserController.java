@@ -32,7 +32,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<UserInfo> login(@RequestBody UserRequest userRequest) {
         UserInfo userInfo = userRepository.login(userRequest);
-        return ResponseEntity.ok(userInfo);
+        return userInfo.getEmail().isEmpty() ? ResponseEntity.badRequest().body(userInfo) : ResponseEntity.ok(userInfo);
     }
 
     @GetMapping("/getSteps/{email}")

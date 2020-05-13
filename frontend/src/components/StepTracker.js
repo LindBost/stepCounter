@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {login, saveUserSteps, updateUserSteps} from "../service/UserService";
+import {saveUserSteps, updateUserSteps} from "../service/UserService";
 import DatePicker, {registerLocale} from "react-datepicker";
 import sv from "date-fns/locale/sv"; // the locale you want
 import format from "date-fns/format";
 import GoogleAPI from "../GoogleFit/googleApi";
+import "react-datepicker/dist/react-datepicker.css";
 
 registerLocale("sv", sv);
 
@@ -37,7 +38,6 @@ const StepTracker = ({userInfo, fetchMySteps, fetchTeamMembers}) => {
             stepInfos: userSteps
         };
 
-        console.log(saveUserStepInfo);
         await saveUserSteps(saveUserStepInfo)
         fetchMySteps();
     };

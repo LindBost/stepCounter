@@ -13,7 +13,6 @@ public class UserInfo {
     private String team;
     //private String id;
 
-
     public UserInfo(String email, String team) {
         this.email = email;
         this.team = team;
