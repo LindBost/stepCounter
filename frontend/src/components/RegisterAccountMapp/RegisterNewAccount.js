@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {createUser} from "../../service/UserService";
 import "./RegisterNewAccountStyle.css"
+import { NotificationManager} from 'react-notifications';
 
 
 const RegisterNewAccount = () => {
@@ -10,16 +11,23 @@ const RegisterNewAccount = () => {
     const [password, setPassword] = useState('');
     const [team, setTeam] = useState('');
 
-    const handleRegister = () => {
-        console.log("massa skit")
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
         const user = {
             firstname: firstName,
             lastname: lastName,
             password: password,
             email: email,
             team: team
+        };
+        const response = await createUser(user);
+
+        if(response === 'OK'){
+            NotificationManager.success('woho', 'användare skapad');
+        } else {
+            NotificationManager.error('Buu', 'något gick fel');
         }
-        createUser(user);
     };
 
 

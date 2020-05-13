@@ -3,7 +3,7 @@ import { Switch, Route, Router } from 'react-router-dom'
 import DashBoard from './components/DashBoardMap/DashBoard';
 import Login from "./components/Login";
 import RegisterNewAccount from './components/RegisterAccountMapp/RegisterNewAccount';
-import Leaderboard from './components/Leaderboard';
+import LeaderboardPage from './components/Leaderdoard/LeaderboardPage';
 
 
 const MainRouter = ({userInfo, setUserInfo}) => {
@@ -12,7 +12,7 @@ const MainRouter = ({userInfo, setUserInfo}) => {
             <Switch>
                 {userInfo.isLoggedIn &&
                     <>
-                        <Route exact path='/leaderboard' render={(props) => <Leaderboard/>}/>
+                        <Route exact path='/leaderboard' render={(props) => <LeaderboardPage/>}/>
                         <Route exact path='/dashboard' render={() => <DashBoard userInfo={userInfo}/>}/>
                     </>
                 }

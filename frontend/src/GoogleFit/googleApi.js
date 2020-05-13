@@ -5,9 +5,9 @@ import format from "date-fns/format";
 
 const clientId = "146490553867-4qraof585vmpt92jvhib0rpd88se4cla.apps.googleusercontent.com"
 
-function GoogleAPI({saveSteps}) {
+function GoogleAPI({saveSteps, fetchTeamMembers, fetchMySteps}) {
 
-    function saveStepsFromGoogleAPI(steps) {
+    const saveStepsFromGoogleAPI = async(steps) => {
 
         let userSteps = steps.map(step => {
             let date = new Date(parseInt(step.startTimeMillis));
@@ -25,14 +25,25 @@ function GoogleAPI({saveSteps}) {
             }
         });
 
-        saveSteps(userSteps)
+        await saveSteps(userSteps)
+        fetchTeamMembers();
 
     }
+
+
 
     const responseGoogle = async (response) => {
         const token = response.accessToken;
         console.log("token " + token)
         try {
+            const now = new Date();
+            const startTime = new Date();
+
+            if(now.getMonth() === 1){
+               startTime.setMonth(12);
+            } else {
+                startTime.setMonth(now.getMonth() -1);
+            }
             const result = await axios({
                 method: "POST",
                 headers: {
@@ -46,10 +57,11 @@ function GoogleAPI({saveSteps}) {
                         "dataSourceId": "derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
                     }],
                     "bucketByTime": {"durationMillis": 86400000},
-                    "startTimeMillis": new Date(2020, 3, 9).getTime(),
-                    "endTimeMillis": new Date(2020, 4, 12).getTime()
+                    "startTimeMillis": startTime.getTime(),
+                    "endTimeMillis": now.getTime()
                 },
             });
+            console.log(Date.now())
             const steps = result.data.bucket;
             saveStepsFromGoogleAPI(steps);
         } catch (e) {
@@ -62,7 +74,7 @@ function GoogleAPI({saveSteps}) {
     return(
         <GoogleLogin
             clientId={clientId}
-            buttonText="Hämta steg"
+            buttonText="Fetch Steps"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}

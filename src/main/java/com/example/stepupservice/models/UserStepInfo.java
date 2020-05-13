@@ -15,6 +15,7 @@ public class UserStepInfo {
 
     private String name;
     private String email;
+    private String team;
     @Singular
     private List<StepInfo> stepInfos;
 }

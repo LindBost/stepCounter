@@ -15,8 +15,13 @@ export const teamMembers = async (name) =>  {
 };
 
 export const createUser = async (user) => {
-    const response = await fetch("http://localhost:8080/createUser", {method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify(user)})
-    console.log(response);
+    try {
+        const response = await fetch("http://localhost:8080/createUser", {method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify(user)})
+        return await response.json();
+    }catch(e){
+        console.log(e)
+    }
+
 };
 
 export const updateUserSteps = async (personalData) => {
@@ -27,4 +32,9 @@ export const updateUserSteps = async (personalData) => {
 export const saveUserSteps = async (personalData) => {
     const response = await fetch("http://localhost:8080/save-user-steps" ,{method:'POST', headers: {'Content-Type': 'application/json'}, body:JSON.stringify(personalData)})
     console.log(response);
+};
+
+export const fetchTeams = async () => {
+    const response = await fetch("http://localhost:8080/getTeamsInfo" ,{method:'GET', headers: {'Content-Type': 'application/json'}})
+    return await response.json();
 };

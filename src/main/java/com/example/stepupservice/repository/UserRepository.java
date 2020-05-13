@@ -37,21 +37,19 @@ public class UserRepository
 
     public UserInfo login(UserRequest userRequest) {
         JSONArray users = fileUtil.readFile(userInformationUrl);
-
         UserInfo userInfo = new UserInfo();
 
         users.forEach(user -> {
             JSONObject jsonUser = (JSONObject)user;
-            // TODO password validation
-            if(jsonUser.get("email").equals(userRequest.getEmail())) {
+            if(jsonUser.get("email").equals(userRequest.getEmail()) && jsonUser.get("password").equals(userRequest.getPassword())) {
                 String email = (String)jsonUser.get("email");
                 String team = (String)jsonUser.get("team");
 
                 userInfo.setEmail(email);
                 userInfo.setTeam(team);
             }
-
         });
+
         return userInfo;
     }
 
@@ -84,11 +82,11 @@ public class UserRepository
         JSONArray users = fileUtil.readFile(userInformationUrl);
         if(!users.toString().contains("\"email\":\""+createUserRequest.getEmail()+"\"")){
             users.add(jsonObject);
-            return false;
+
+            return fileUtil.writeFile(userInformationUrl, users);
         }
 
-        boolean success = fileUtil.writeFile(userInformationUrl, users);
-        return success;
+        return false;
     }
 
     public boolean saveStepsForUser(PersonalData personalData) {

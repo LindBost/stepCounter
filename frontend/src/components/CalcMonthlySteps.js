@@ -3,8 +3,6 @@ import "./Component.css";
 
 const CalcMonthlySteps = ({mySteps, month, setMonth}) => {
 
-
-
     const [steps,setSteps] = useState();
 
     useEffect(() => {
@@ -39,7 +37,6 @@ const CalcMonthlySteps = ({mySteps, month, setMonth}) => {
         } else {
             setMonth((month +1) % 13);
         }
-
     };
 
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
