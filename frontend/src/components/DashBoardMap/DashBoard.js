@@ -14,7 +14,7 @@ const getCurrentDate = () => {
     return month +1;
 };
 
-const DashBoard = ({userInfo}) => {
+const DashBoard = ({userInfo, setUserInfo}) => {
 
     const [mySteps, setMySteps] = useState([]);
     const [month, setMonth] = useState(getCurrentDate());
@@ -42,7 +42,7 @@ const DashBoard = ({userInfo}) => {
     return (
 
         <div className="dashPage">
-            <SubNav/>
+            <SubNav userInfo={userInfo} setUserInfo={setUserInfo}/>
         <div className="dashContainer">
                 <h1>DashBoard</h1>
                 <div className="fetchedInfo">
