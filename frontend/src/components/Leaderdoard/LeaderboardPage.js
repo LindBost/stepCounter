@@ -9,7 +9,7 @@ const getCurrentDate = () => {
     return month + 1;
 };
 
-const LeaderboardPage = (props) => {
+const LeaderboardPage = ({setUserInfo}) => {
 
     const [teams, setTeams] = useState();
     const [month, setMonth] = useState(getCurrentDate());
@@ -51,8 +51,7 @@ const LeaderboardPage = (props) => {
 
     return (
         <>
-            <SubNav/>
-
+            <SubNav setUserInfo={setUserInfo}/>
             <Leaderboard teams={teams} month={month}/>
             <button onClick={prevMonth}>prev month</button>
             <button onClick={nextMonth}>next month</button>
