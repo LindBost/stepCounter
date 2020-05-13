@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Leaderboard from './Leaderboard';
 import {fetchTeams} from "../../service/UserService";
+import SubNav from "../DashBoardMap/subNav/SubNav.js";
 
 const getCurrentDate = () => {
     const date = new Date();
@@ -50,9 +51,12 @@ const LeaderboardPage = (props) => {
 
     return (
         <>
+            <SubNav/>
+
             <Leaderboard teams={teams} month={month}/>
             <button onClick={prevMonth}>prev month</button>
             <button onClick={nextMonth}>next month</button>
+
         </>
     )
 };

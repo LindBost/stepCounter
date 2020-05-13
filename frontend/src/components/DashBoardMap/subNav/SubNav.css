@@ -17,13 +17,16 @@
     padding: 0;
 }
 
-.navbar-items {
+.subnav button {
     display: flex;
     flex-direction: row;
     list-style-type: none;
     height: 100%;
     width: 100%;
     align-items: center;
+    background-color: #206276;
+    color: white;
+    border: #206276;
     /* justify-content: space-evenly;*/
 }
 
