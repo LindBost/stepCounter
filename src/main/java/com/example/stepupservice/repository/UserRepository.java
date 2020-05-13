@@ -84,11 +84,11 @@ public class UserRepository
         JSONArray users = fileUtil.readFile(userInformationUrl);
         if(!users.toString().contains("\"email\":\""+createUserRequest.getEmail()+"\"")){
             users.add(jsonObject);
-            return false;
+
+            return fileUtil.writeFile(userInformationUrl, users);
         }
 
-        boolean success = fileUtil.writeFile(userInformationUrl, users);
-        return success;
+        return false;
     }
 
     public boolean saveStepsForUser(PersonalData personalData) {

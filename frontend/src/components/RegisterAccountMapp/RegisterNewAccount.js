@@ -10,8 +10,8 @@ const RegisterNewAccount = () => {
     const [password, setPassword] = useState('');
     const [team, setTeam] = useState('');
 
-    const handleRegister = () => {
-        console.log("massa skit")
+    const handleRegister = (e) => {
+        e.preventDefault();
         const user = {
             firstname: firstName,
             lastname: lastName,
