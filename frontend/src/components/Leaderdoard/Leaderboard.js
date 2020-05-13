@@ -1,4 +1,6 @@
 import React from 'react';
+import '../DashBoardMap/Dash.css';
+import '../DashBoardMap/Team/Team.css';
 
 const Leaderboard = ({teams, month}) => {
 
@@ -14,12 +16,12 @@ const Leaderboard = ({teams, month}) => {
     };
 
     return(
-        <div>
+        <div className='card'>
             {
                 Object.keys(teams).map(team => {
                     return (
-                        <div key={team}>
-                            <p>{team}</p>
+                        <div className='teamMember' key={team}>
+                            <p>{team.toUpperCase()}</p>
                             <p>{getTeamStepsForMonth(team)}</p>
                         </div>
                     )

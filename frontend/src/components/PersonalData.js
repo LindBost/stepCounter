@@ -8,7 +8,10 @@ const PersonalData = ({mySteps, month}) => {
         <>
 
             {
-                mySteps.filter(step => new Date(step.date).getMonth() +1 === month)
+                mySteps.filter(step => new Date(step.date).getMonth() + 1 === month)
+                    .sort(function (x, y) {
+                        return new Date(y.date).getTime() - new Date(x.date).getTime();
+                    })
                     .map(step => <p>{step.date} : {step.steps}</p>)
             }
         </>
