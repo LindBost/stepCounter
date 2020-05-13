@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import MainRouter from "./MainRouter";
 import NavBar from "./components/NavBar/NavBar";
+import {NotificationContainer} from 'react-notifications';
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <div className="App">
           <NavBar/>
           <MainRouter userInfo={userInfo} setUserInfo={setUserInfo} />
+          <NotificationContainer />
       </div>
   );
 }

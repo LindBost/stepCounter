@@ -44,6 +44,7 @@ public class UserController {
     @PostMapping("/createUser")
     public HttpStatus createUser(@RequestBody CreateUserRequest userRequest) {
             boolean createdUserSuccess = userRepository.createUser(userRequest);
+
             return createdUserSuccess ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
     }
 
