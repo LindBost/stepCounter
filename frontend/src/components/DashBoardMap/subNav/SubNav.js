@@ -13,13 +13,9 @@ const SubNav = () => {
         <div className="subnav">
 
             <div className="menu">
-                <button type="button" onClick={navigateToLeaderBoard}>Leaderboard</button>
                 <button type="button" onClick={navigateToDashBoard}>DashBoard</button>
+                <button type="button" onClick={navigateToLeaderBoard}>Leaderboard</button>
                 <button type="button" onClick={navigateToLeaderBoard}>Sign Out</button>
-
-                <ul className='navbar-items'>
-
-                </ul>
             </div>
         </div>
     );

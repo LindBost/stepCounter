@@ -10,7 +10,6 @@ const NavBar = () => {
                 <img src={logo}/>
             </div>
             <div className="menu">
-                <h1>StepUp </h1>
                 <ul className='navbar-items'>
 
                 </ul>

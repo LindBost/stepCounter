@@ -19,7 +19,7 @@ const DashBoard = ({userInfo}) => {
     const [mySteps, setMySteps] = useState([]);
     const [month, setMonth] = useState(getCurrentDate());
     const [teamInfo, setTeamInfo] = useState({teamName: '', info: []});
-    const history = useHistory();
+
 
     useEffect(() => {
         fetchMySteps();
@@ -39,14 +39,11 @@ const DashBoard = ({userInfo}) => {
         setTeamInfo(team);
     }
 
-    const navigateToLeaderBoard = () => history.push('/leaderboard');
-
     return (
 
         <div className="dashPage">
             <SubNav/>
         <div className="dashContainer">
-                <button type="button" onClick={navigateToLeaderBoard}>Leaderboard</button>
                 <h1>DashBoard</h1>
                 <div className="fetchedInfo">
                     <div className="dashBoard">
