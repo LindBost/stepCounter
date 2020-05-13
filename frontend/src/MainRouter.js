@@ -3,7 +3,7 @@ import { Switch, Route, Router } from 'react-router-dom'
 import DashBoard from './components/DashBoardMap/DashBoard';
 import Login from "./components/Login";
 import RegisterNewAccount from './components/RegisterAccountMapp/RegisterNewAccount';
-import LeaderboardPage from './components/Leaderdoard/LeaderboardPage';
+import LeaderboardPage from './components/Leaderboard/LeaderboardPage';
 
 
 const MainRouter = ({userInfo, setUserInfo}) => {

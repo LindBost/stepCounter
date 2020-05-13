@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {createUser} from "../../service/UserService";
 import "./RegisterNewAccountStyle.css"
 import { NotificationManager} from 'react-notifications';
+import { useHistory } from "react-router-dom";
+
 
 
 const RegisterNewAccount = () => {
@@ -10,6 +12,7 @@ const RegisterNewAccount = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [team, setTeam] = useState('');
+    const history = useHistory();
 
 
     const handleRegister = async (e) => {
@@ -19,12 +22,13 @@ const RegisterNewAccount = () => {
             lastname: lastName,
             password: password,
             email: email,
-            team: team
+            team: !team ? 'sellery' : team
         };
         const response = await createUser(user);
 
         if(response === 'OK'){
             NotificationManager.success('woho', 'användare skapad');
+            history.push('/');
         } else {
             NotificationManager.error('Buu', 'något gick fel');
         }
@@ -53,7 +57,7 @@ const RegisterNewAccount = () => {
                                        onChange={(event) => setEmail(event.target.value)}/>
                             </div>
                             <div className="userInfo">
-                                <h5>FirstName: </h5>
+                                <h5>Password: </h5>
                                 <input required className="password" placeholder="password"  value={password}
                                        onChange={(event) => setPassword(event.target.value)}/>
                             </div>
