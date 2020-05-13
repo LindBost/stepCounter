@@ -1,7 +1,6 @@
 .teamContainer{
     display: flex;
-margin: 10px;
-
+    margin: 10px;
     flex-direction: column;
 }
 .teamMember{
